@@ -1,3 +1,7 @@
+# pypy로 하면 시간초과
+# python3로 하면 통과 하는
+# 기이한 코드....
+
 from queue import Queue
 import sys
 input = sys.stdin.readline
