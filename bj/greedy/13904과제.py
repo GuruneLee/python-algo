@@ -1,27 +1,18 @@
 n = int(input())
 dw = [list(map(int, input().split())) for _ in range(n)]
+dw.sort(key=lambda x: (x[0], -x[1]))
 
-dw.sort(key=lambda x: x[0])
-print(dw)
+greedy = []
+for i in range(n):
+    d, w = dw[i]
+    greedy.sort()
+    if len(greedy) < d:
+        greedy.append(w)
+    else:
+        greedy[0] = greedy[0] if greedy[0] > w else w
 
-maxDay = dw[0][0]
-for i in range(1,n):
-    maxDay = max(maxDay, dw[i][0])
 
-sum = 0
-for day in range(1,maxDay):
-    MAX = 0
-    for i in range(n):
-        if dw[i][1]==0 or dw[i][0]-day < 0: 
-            continue
-        if MAX < dw[i][1]:
-            MAX = dw[i][1]
-            MAXI = i
-    dw[MAXI][1] = 0
-    print(dw[MAXI][0], MAX)
-    sum += MAX
-
-print(sum)
+print(sum(greedy))
 
 
 # 1 20
