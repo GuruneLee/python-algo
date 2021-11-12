@@ -78,3 +78,7 @@ que.put(3)
 print(que.get())
 print(que.get())
 print(que.get())
+
+# String
+# casfold() - lower() 랑 비슷
+s.casefold()
