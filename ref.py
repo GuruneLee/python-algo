@@ -8,6 +8,8 @@ input = sys.stdin.readline
 l = list(map(str, input().split()))  # list
 s = input().rstrip()  # string
 
+# iterate
+
 # list
 l = [1, 2, 3]
 while l:
@@ -78,3 +80,8 @@ que.put(3)
 print(que.get())
 print(que.get())
 print(que.get())
+
+# ord - 문자의 유니코드 값을 돌려줌
+# 유니코드를 문자로 바꾸려면 chr
+print(ord('a'), ord('z')) ## 97 - 122
+print(ord('A'), ord('Z')) ## 65 - 90
