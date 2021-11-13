@@ -85,3 +85,6 @@ print(que.get())
 # 유니코드를 문자로 바꾸려면 chr
 print(ord('a'), ord('z')) ## 97 - 122
 print(ord('A'), ord('Z')) ## 65 - 90
+# String
+# casfold() - lower() 랑 비슷
+s.casefold()

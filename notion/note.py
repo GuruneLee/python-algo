@@ -4,6 +4,9 @@
 # Aa > AAa - 크기가 다르면 앞에서부터 문자가 큰게 더 큼
 # 관련 문제 - 백준 1294 문자열장식
 
+# ASCII 문자 유니코드
+
+
 # 누적합 문제 - 이중 누적합
 # 백준 11660
 import sys
@@ -67,3 +70,64 @@ for i in range(1<<n): # 1<<n는 2**n 을 의미한다 ex.0001<<3 = 0100(8)
     for j in range(n):
         if i&(1<<j): # i의 j번째 비트가 1인지 아닌지 의미함
             print(arr[j], end=',')
+
+# union-find
+
+parent = [i for i in range(n)]
+
+
+def find(a):
+    if a == parent[a]:
+        return a
+    p = find(parent[a])
+    parent[a] = p
+    return parent[a]
+
+
+def union(a, b):
+    a = find(a)
+    b = find(b)
+    if a == b:
+        return
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
+
+
+# BST (이진 탐색 트리)
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+class BST(object):
+    def __init__(self):
+        self.root = None
+
+    def insert(self, data):
+        self.root = self._insert_value(self.root, data)
+        return self.root is not None
+
+    def _insert_value(self, node, data):
+        if node is None:
+            node = Node(data)
+        else:
+            if data <= node.data:
+                node.left = self._insert_value(node.left, data)
+            else:
+                node.right = self._insert_value(node.right, data)
+        return node
+
+    def find(self, key):
+        return self._find_value(self.root, key)
+
+    def _find_value(self, root, key):
+        if root is None or root.data == key:
+            return root is not None
+        elif key < root.data:
+            return self._find_value(root.left, key)
+        else:
+            return self._find_value(root.right, key)
