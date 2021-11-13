@@ -27,3 +27,43 @@ def asum(a, b, c, d):
 for _ in range(m):
     x1, y1, x2, y2 = map(int, input().split())
     print(asum(x1, y1, x2, y2))
+    
+# 후위표기식 - 스택 이용
+## s[0] 부터 순서대로 훝으면서 ㄱㄱ
+## 1. 피연산자 그대로 출력
+## 2. 연산자는 
+### 1) 스택이 비어있다면 스택에 추가 
+### 2) 스택의 TOP이 자신보다 낮은 우선순위일 때 까지 pop 하고 추가
+### * 단, 여는 괄호 '('는 닫는괄호가 아니면 pop하지 않음
+## 3. 닫는 괄호가 나오면 여는 괄호가 나올때까지 꺼내서 출력
+## 4. s[last]에 도착하면 스택에서 차례로 꺼내서 출력
+# ref: 백준 1918 후위 표기식
+stack = []
+s = "A+B/C*D*(E+F)"
+for i in range(len(s)):
+    if ord('A')<=ord(s[i])<=ord('Z'):
+        print(s[i])
+    else:
+        if s[i] == ')':
+            while True:
+                if stack[len(stack)-1] == '(':
+                    break
+                print(stack.pop())
+            stack.pop()
+        else:
+            while len(stack)>0 :
+                if stack[len(stack)] < s[i]:#우선순위
+                    break
+                print(stack.pop())
+            stack.append(s[i])
+
+# 부분집합(power set)
+## 1) 중첩 for문
+## 2) Binary Counting * - n번째 비트값이 1이면 n번째 원소가 포함되어있음을 의미
+## 모든 부분집합을 출력하는 코드
+arr = [1,2,3]
+n = len(arr)
+for i in range(1<<n): # 1<<n는 2**n 을 의미한다 ex.0001<<3 = 0100(8)
+    for j in range(n):
+        if i&(1<<j): # i의 j번째 비트가 1인지 아닌지 의미함
+            print(arr[j], end=',')
