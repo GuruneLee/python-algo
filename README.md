@@ -233,7 +233,7 @@ def binary_search(arr, target, start, end):
 
 ### Shortest Path
 1. 다익스트라 O(ElogV)
-- 음의 간선이 없어야 한다
+- 음의 간선이 없어야 한다 (사이클을 돌 가능성이 생김)
 - 최단 거리 테이블 필요
 ~~~python
 # 개선된 다익스트라 알고리즘
@@ -285,6 +285,40 @@ for k in range(1, n+1):
 # 4. 출력
 ~~~
 3. 벨만 포드
+- 100% 이해는 못함
+- 음수 사이클이 생기는지 판단할 수 있는 최소거리 알고리즘
+- 프로세스
+    1. 모든 간선마다
+        - 간선이 잇는 출발 정점이 한번이라도 계산 된 정점 이라면(INF가 아니라면), 해당 간선이 잇는 정점의 거리를 비교해서 업데이트한다
+        - (Dist\[To] > Dist\[From] + cost(From, To) 이면 업데이트 함)
+    2. 1번 과정을 |V|-1번 반복한다
+    3. 1번 과정을 한 번 더 반복한다
+        - 업데이트가 발생하지 않는다 -> 출력
+        - 업데이트가 발생한다 -> 음의 사이클 존재 (최소를 구할 수 없음)
+- [도움받은 블로그](https://yabmoons.tistory.com/365)
+~~~python
+v, e
+edges
+dist = [INF]*(v+1)
+def bellman_ford(start):
+    dist[start] = 0
+    for i in range(1, v): #v-1번 반복
+        for edge in edges:
+            From, To, cost = edge
+            if dist[From] == INF: continue;
+            if dist[To] > dist[From] + cost:
+                dist[To] = dist[From] + cost
+    for edge in edges:
+            From, To, cost = edge
+            if dist[From] == INF: continue;
+            if dist[To] > dist[From] + cost:
+                return False
+    return True
+## 최소 거리
+print(min(dist))
+~~~
+
+
 
 ### 그래프 이론
 1. (union-find) 무방향 그래프 사이클 판별

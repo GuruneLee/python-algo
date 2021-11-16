@@ -1,29 +1,16 @@
-# 16953 A에서B
-from queue import Queue
+n, m = map(int, input().split())
+l = [input() for _ in range(n)]
 
-a, b = input().split()
+cn = cm = 0
+for i in range(n):
+    # print(l[i])
+    if 'X' not in l[i]:
+        cn += 1
 
-dp = {}
-dp[a] = 0
-q = Queue()
-q.put(a)
-
-while not q.empty():
-    cs = q.get()
-    ns = cs + '1'
-    if ns == b:
-        print(dp[cs]+2)
-        exit(0)
-    if int(ns) < int(b):
-        if ns not in dp:
-            dp[ns] = dp[cs]+1
-            q.put(ns)
-    ns = str(int(cs)*2)
-    if ns == b:
-        print(dp[cs]+2)
-        exit(0)
-    if int(ns) < int(b):
-        if ns not in dp:
-            dp[ns] = dp[cs]+1
-            q.put(ns)
-print(-1)
+for i in range(m):
+    tl = ""
+    for j in range(n):
+        tl += l[j][i]
+    if 'X' not in tl:
+        cm += 1
+print(max(cn, cm))
