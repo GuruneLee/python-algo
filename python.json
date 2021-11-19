@@ -6,7 +6,7 @@
 	},
 	"For for Input": {
 		"prefix": "infor",
-		"body": "for _ in range(int(input())):\n  ",
+		"body": "for _ in range(int(input())):",
 		"description": "테스트케이스 순회"
 	},
 	"Fast Input": {
