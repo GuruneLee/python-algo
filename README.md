@@ -15,6 +15,14 @@
     # sort
     arr.sort()
     ~~~
+
+## 템플릿 template
+### 재귀 깊이 설정
+~~~python
+import sys
+sys.setrecursionlimit(10**6)
+~~~
+
 ## String
 ### ASCII
 - 'a'~'z' : 97~122
