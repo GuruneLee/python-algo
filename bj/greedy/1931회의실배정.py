@@ -17,7 +17,6 @@ for i in range(len(l)):
     elif cy <= ly:
         re = l[i]
 print(ans)
-
 # 날림 버젼
 # re = [(0, 0)]
 # for i in range(len(l)):
