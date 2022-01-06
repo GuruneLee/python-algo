@@ -1,14 +1,20 @@
+m = int(input())
 n = int(input())
-if n == 1:
-    exit(0)
 
 
-def f(x):
-    for i in range(2, n+1, 1):
-        if x % i == 0:
-            print(i)
-            f(x//i)
-            break
+def prime_list(s, x):
+    sieve = [True]*x
+    tmp = int(x**0.5)
+    for i in range(2, tmp+1):
+        if sieve[i]:
+            for j in range(i+i, x, i):
+                sieve[j] = False
+    return [i for i in range(2, x) if sieve[i] and i >= s]
 
 
-f(n)
+p = prime_list(m, n+1)
+if len(p) != 0:
+    print(sum(p))
+    print(min(p))
+else:
+    print(-1)

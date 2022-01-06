@@ -417,7 +417,18 @@ print(topology_sort)
 ~~~
 ### 정수론
 1. 아라토스테네스의 체
-- 소수 판별하는 알고리즘? 소수를 골라내는 알고리즘?
+- 소수를 찾는 알고리즘
+~~~python
+# n 미만의 소수 찾기
+def prime_list(n):
+    sieve = [True]*n
+    m = int(n**0.5)
+    for i in range(2, m+1):
+        if sieve[i]:
+            for j in range(i+i, n, i):
+                sieve[j] = False
+    return [i for i in range(2,n) if sieve[i]==True ]
+~~~
 
 2. 두 수의 최대공약수 / 최소공배수
 ~~~python
