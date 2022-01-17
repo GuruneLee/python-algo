@@ -15,12 +15,92 @@
     # sort
     arr.sort()
     ~~~
+### Permutation (순열) 라이브러리
+- 사용법 `permutations(iterable, numOfElem))`
+    - iterable 중에 num개를 뽑아 나열한 수열
+    - **중복된 숫자가 있을때는 set(itertools.permutation(list)) 이렇게 쓰자** (인덱스를 돌리는 듯 함)
+    - 템플릿 아직 없음
+~~~python
+import itertools
 
-## 템플릿 template
+pool = ['A', 'B', 'C']
+for e in itertools.permutations(pool):
+    print(e)
+for e in itertools.permutations(pool, 2):
+    print(e)
+~~~
+### Combination (조합) 라이브러리
+- 사용법: `combinations(iterable, numOfElem))`
+    - iterable 중에 num개를 뽑은 조합
+    - **중복된 숫자가 있을때는 set(itertools.permutation(list)) 이렇게 쓰자** (인덱스를 돌리는 듯 함)
+    - 템플릿 있음
+~~~python
+import itertools
+
+pool = ['A', 'B', 'C']
+for e in itertools.combinations(pool):
+    print(e)
+for e in itertools.combinations(pool, 2):
+    print(e)
+~~~
+## 스니펫 snippets
 ### 재귀 깊이 설정
 ~~~python
 import sys
 sys.setrecursionlimit(10**6)
+~~~
+### Combination (조합)
+- 정윤이가 준 여러개의 nCr
+1. 기본
+~~~python
+def ncr(n, r):
+  ret = 1
+  for i in range(r):
+    ret *= (n-i)
+    ret /= (i+1)
+  return int(ret)
+~~~
+2. 모듈러곱셉역원
+~~~python
+f = [0] * (4000001)
+invf = [0] * (4000001)
+f[0], f[1] = 1, 1
+
+for i in range(2, 4000001):
+  f[i] = f[i-1] * i % MOD
+
+invf[4000000] = pow(f[4000000], MOD-2, MOD)
+for i in range(4000000, 0, -1):
+  invf[i-1] = (invf[i] * i)% MOD
+
+def ncr(n, r):
+  ret = f[n]
+  ret *= invf[r]
+  ret %= MOD
+  ret *= invf[n-r]
+  ret %= MOD
+  return ret
+~~~
+3. 페르마소정리
+~~~python
+def extend_euc(a, b):
+  if b == 0:
+    return a, 1, 0
+  gcd, x, y = extend_euc(b, a%b)
+  return gcd, y, x-(a//b)*y
+
+def mod_inverse(a, mod):
+  g, a, b = extend_euc(a, mod)
+  if g > 1: return -1
+  return (a + mod) % mod
+
+def ncr(n, r, MOD):
+  ret = 1
+  for i in range(r):
+    ret *= (n-i)
+    ret *= mod_inverse(i+1, MOD)
+    ret %= MOD
+  return int(ret)%MOD
 ~~~
 
 ## String

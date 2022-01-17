@@ -1,12 +1,7 @@
-n = int(input())
-l = list(map(int, input().split()))
-d = {}
-t = sorted(set(l))
-for i in range(len(t)):
-    d[t[i]] = i
-for i in range(n):
-    l[i] = d[l[i]]
+dp = [-1, 1,1,1,2,2,3,4,5,7,9]
 
-for k in l:
-    print(k, end=" ")
-print()
+for i in range(11, 101):
+    dp.append(dp[i-1]+dp[i-5])
+
+for _ in range(int(input())):
+    print(dp[int(input())])
