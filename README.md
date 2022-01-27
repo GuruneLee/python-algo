@@ -328,7 +328,7 @@ def binary_search(arr, target, start, end):
 import heapq
 INF = int(1e9)
 
-# 노드의 개수, 간손의 개수
+# 노드의 개수, 간선의 개수
 n, m = map(int, input().split(()))
 # 시작 노드 번호
 start = int(input())
