@@ -1,7 +1,15 @@
-dp = [-1, 1,1,1,2,2,3,4,5,7,9]
+n, k = map(int, input().split())
 
-for i in range(11, 101):
-    dp.append(dp[i-1]+dp[i-5])
+w = []
+for _ in range(n):
+    w.append(int(input()))
 
-for _ in range(int(input())):
-    print(dp[int(input())])
+dp = [0]*(k+1)
+dp[0] = 1
+
+for i in range(n):
+    for j in range(1, k+1):
+        if j >= w[i]:
+            dp[j] += dp[j-w[i]]
+
+print(dp[k])
