@@ -1,15 +1,31 @@
-n, k = map(int, input().split())
+from collections import deque
 
-w = []
-for _ in range(n):
-    w.append(int(input()))
+n = int(input())
 
-dp = [0]*(k+1)
-dp[0] = 1
-
+l = []
+v = []
 for i in range(n):
-    for j in range(1, k+1):
-        if j >= w[i]:
-            dp[j] += dp[j-w[i]]
+    l.append(list(map(int, input().split())))
+    v.append(l[i])
 
-print(dp[k])
+q = deque()
+for i in range(3):
+    q.append((0, i))
+
+while q:
+    cx, cy = q.popleft()
+    if cx == n-1:
+        continue
+    print(cx, cy, end="/")
+    for dy in range(-1, 2, 1):
+        ny = cy + dy
+        nx = cx + 1
+        if not (0 <= ny <= 2):
+            continue
+        print(nx, ny, end=", ")
+        q.append((nx, ny))
+        tmp = v[cx][cy] + l[nx][ny]
+        v[nx][ny] = max(v[nx][ny], tmp)
+    print()
+
+print(v)
