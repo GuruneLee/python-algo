@@ -475,7 +475,7 @@ graph
 v, e
 def topology_sort():
     result = []
-    q = dequeu()
+    q = deque()
 
     for i in range(1, v+1):
         if indegree[i] == 0:
