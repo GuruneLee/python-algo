@@ -1,6 +1,7 @@
-from math import ceil, log2
 import sys
-input= lambda: sys.stdin.readline().rstrip()
+input = lambda: sys.stdin.readline().rstript()
+
+from math import ceil, log2
 class segmentTree:
     def __init__(self, origin):
         n = len(origin)
@@ -14,7 +15,7 @@ class segmentTree:
             self.tree[node] = origin[start]
             return self.tree[node]
         mid = (start + end) // 2
-        self.tree[node] = self.init(start, mid, node*2, origin) + self.init(mid+1, end, node*2+1, origin)
+        self.tree[node] = self.init(start, mid, node*2, l) + self.init(mid+1, end, node*2+1, l)
         return self.tree[node]
 
     def sum(self, start, end, node, left, right):
@@ -39,13 +40,18 @@ class segmentTree:
         self.update(start, mid, node*2, index, dif)
         self.update(mid+1, end, node*2+1, index, dif)
         
-        
-        
-l = [1,9,3,8,4,5,5,9,10,3,4,5]
-st = segmentTree(len(l))
-st.init(0,11,1,l)
+n,m,k = list(map(int, input().split()))
+l = [0]*n
+for i in range(n):
+    l[i] = int(input())
 
-print(st.sum(0,11,1,0,2))
-st.update(0,11,1,0,10)
-print(st.sum(0,11,1,0,2))
+st = segmentTree(l)
+# st.init(0,n-1,1,l)
 
+for _ in range(m+k):
+    a,b,c = list(map(int, input().split()))
+    if a==1:
+        st.update(0,n-1,1,b-1,c-l[b-1])
+        l[b-1] = c
+    else:
+        print(st.sum(0,n-1,1,b-1,c-1))

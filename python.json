@@ -1,27 +1,27 @@
 {
-	"List Input": {
-		"prefix": "inl",
-		"body": "list(map(int, input().split()))",
-		"description": "정수 배열 입력받기"
-	},
-	"For for Input": {
-		"prefix": "infor",
-		"body": "for _ in range(int(input())):",
-		"description": "테스트케이스 순회"
-	},
-	"Fast Input": {
-		"prefix": "insys",
-		"body": "import sys\ninput=sys.stdin.readline",
-		"description": "빠르게"
-	},
-	"One Integer": {
-		"prefix": "in1",
-		"body": "int(input())",
-		"description": "한개 정수 입력"
-	},
-	"Map Integer": {
-		"prefix": "in2",
-		"body": "map(int,input().split())",
-		"description": "여러개 정수 입력"
-	}
+  "List Input": {
+    "prefix": "inl",
+    "body": "list(map(int, input().split()))",
+    "description": "정수 배열 입력받기"
+  },
+  "For for Input": {
+    "prefix": "infor",
+    "body": "for _ in range(int(input())):",
+    "description": "테스트케이스 순회"
+  },
+  "Fast Input": {
+    "prefix": "insys",
+    "body": "import sys\ninput = lambda: sys.stdin.readline().rstrip()",
+    "description": "빠르게"
+  },
+  "One Integer": {
+    "prefix": "in1",
+    "body": "int(input())",
+    "description": "한개 정수 입력"
+  },
+  "Map Integer": {
+    "prefix": "in2",
+    "body": "map(int,input().split())",
+    "description": "여러개 정수 입력"
+  }
 }
