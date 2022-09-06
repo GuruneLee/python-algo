@@ -11,10 +11,12 @@ def lis1(l):
                 dp[i] = max(dp[i], dp[j]+1)
     return max(dp)
 
-# seg_tree
+# seg_tree - 잘 안씀
 # dp를 seg_tree로 최적화 하는 방법임 (max_segTree 사용)
-## https://m.blog.naver.com/kks227/220791986409
-## https://nicotina04.tistory.com/167
+## https://m.blog.naver.com/kks227/220791986409 
+## - segment tree에 대한 내용 (lis가 포함되어 있음)
+## - 문제 추천도 많음
+## https://nicotina04.tistory.com/167 - lis에 대한 내용 총망라
 from math import log2, ceil
 class lisSegmentTree:
     def __init__(self, n):
@@ -54,4 +56,3 @@ for i in range(n):
     lst.buildTree(0,n-1, 1, idx[i],max_+1)
 
 print(lst.tree[1])
-# lower bound (binary search)
