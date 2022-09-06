@@ -11,6 +11,8 @@ def lis1(l):
                 dp[i] = max(dp[i], dp[j]+1)
     return max(dp)
 
+# lower_bound
+
 # seg_tree - 잘 안씀
 # dp를 seg_tree로 최적화 하는 방법임 (max_segTree 사용)
 ## https://m.blog.naver.com/kks227/220791986409 
