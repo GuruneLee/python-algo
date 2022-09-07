@@ -6,12 +6,17 @@
   },
   "For for Input": {
     "prefix": "infor",
-    "body": "for _ in range(int(input())):",
+    "body": "for _ in range(int(input())):\n  ",
     "description": "테스트케이스 순회"
+  },
+  "N elements Input to List": {
+    "prefix": "forin",
+    "body": ["[int(input()) for _ in range(n)]"],
+    "description": "한 원소를 한 줄 씩 입력받기"
   },
   "Fast Input": {
     "prefix": "insys",
-    "body": "import sys\ninput = lambda: sys.stdin.readline().rstrip()",
+    "body": "import sys\ninput=lambda:sys.stdin.readline().rstrip()",
     "description": "빠르게"
   },
   "One Integer": {
